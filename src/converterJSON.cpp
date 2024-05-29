@@ -41,17 +41,17 @@ std::vector<std::string> ConverterJSON::getTextDocument() {
             }
             else
             {
-                throw "Error: config.json has incorrect file version";
+                throw "Error: \"config.json\" has incorrect file version";
             }
         }
         else
         {
-            throw "Error: config file is empty";
+            throw "Error: \"config file\" is empty";
         }
     }
     else
     {
-        throw "Error: config file is missing";
+        throw "Error: \"config file\" is missing";
     }
     fileConfig.close();
     return textDocuments;
@@ -59,18 +59,30 @@ std::vector<std::string> ConverterJSON::getTextDocument() {
 
 int ConverterJSON::getResponsesLimit() {
     std::ifstream file ("json_files\\config.json");
+
+    if (!file.is_open())
+    {
+        throw "Error: file \"config.json\" not open";
+    }
+
     json dict;
     file >> dict;
-    int defaultValue = 5;
-    int currentValue = dict["config"]["max_responses"];
-    int sizeResponses = (dict["config"]["max_responses"].empty()) ? defaultValue : currentValue;
+    int defaultResponses = 5;
+    int currentResponses = dict["config"]["max_responses"];
+    int responses = (dict["config"]["max_responses"].empty()) ? defaultResponses : currentResponses;
     file.close();
-    return sizeResponses;
+    return responses;
 }
 
 std::vector<std::string> ConverterJSON::getRequests() {
     std::vector<std::string> requests;
     std::ifstream file("json_files\\requests.json");
+
+    if (!file.is_open())
+    {
+        throw "Error: file \"requests.json\" not open";
+    }
+
     json dict;
     file >> dict;
 
@@ -121,5 +133,9 @@ void ConverterJSON::putAnswers(std::vector<std::vector<std::pair <size_t, float>
             ++i;
         }
         file << dict.dump(4);
+    }
+    else
+    {
+        throw "Error: file \"answers.json\" not open";
     }
 }

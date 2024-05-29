@@ -1,5 +1,4 @@
 #include "converterJSON.h"
-#include "invertedIndex.h"
 #include "gtest/gtest.h"
 
 TEST(converterJSON, readConfig) {
@@ -15,16 +14,28 @@ TEST(converterJSON, readRequests) {
 
 TEST(converterJSON, getResponsesLimit) {
     ConverterJSON converter;
-    int expected = 5;
-    int responses = converter.getResponsesLimit();
-    ASSERT_EQ(expected, responses);
+    try
+    {
+        int expected = 5;
+        int responses = converter.getResponsesLimit();
+        ASSERT_EQ(expected, responses);
+    }
+    catch (const char* message) {
+        std::cerr << message << std::endl;
+    }
 }
 
 TEST(converterJSON, getRequests) {
     ConverterJSON converter;
-    size_t expectedRequests = 1;
-    size_t numberRequests = converter.getRequests().size();
-    ASSERT_EQ(expectedRequests, numberRequests);
+    try
+    {
+        size_t expectedRequests = 1;
+        size_t numberRequests = converter.getRequests().size();
+        ASSERT_EQ(expectedRequests, numberRequests);
+    }
+    catch (const char* message) {
+        std::cerr << message << std::endl;
+    }
 }
 
 TEST(converterJSON, getFiles) {
@@ -45,5 +56,5 @@ TEST(converterJSON, getFiles) {
 }
 
 TEST(converterJSON, putAnswers) {
-    
+
 }

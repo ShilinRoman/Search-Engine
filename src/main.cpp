@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <fstream>
 
 #include "converterJSON.h"
 #include "invertedIndex.h"
@@ -35,5 +36,14 @@ void launchingSearchEngine ()
 int main()
 {
     launchingSearchEngine();
+    ConverterJSON converter;
+    try
+    {
+        int limit = converter.getResponsesLimit();
+        std::cout << "Limit: " << limit << std::endl;
+    }
+    catch (const char* message) {
+        std::cerr << message << std::endl;
+    }
     return 0;
 }
