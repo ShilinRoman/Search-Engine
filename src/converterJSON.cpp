@@ -17,10 +17,10 @@ std::vector<std::string> ConverterJSON::getTextDocument() {
 
                 if (!dict["files"].empty())
                 {
-                    for (size_t i = 0; i < dict["files"].size(); ++i)
+                    for (const auto& element : dict["files"])
                     {
                         std::string currentText;
-                        std::ifstream files (dict["files"][i]);
+                        std::ifstream files (element);
 
                         if (files.is_open())
                         {
@@ -29,7 +29,7 @@ std::vector<std::string> ConverterJSON::getTextDocument() {
                         }
                         else
                         {
-                            std::cerr << "File " << dict["files"][i] << " does not exist" << std::endl;
+                            std::cerr << "File " << element << " does not exist" << std::endl;
                         }
                         files.close();
                     }
