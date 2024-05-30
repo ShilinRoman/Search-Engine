@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <iomanip>
+#include <exception>
 #include <filesystem>
 #include <fstream>
 #include <vector>
@@ -12,6 +13,15 @@
 #include "nlohmann/json.hpp"
 
 using json = nlohmann::json;
+
+class ConverterException : public std::exception {
+public:
+    explicit ConverterException (const std::string& newMessage) : message(newMessage) {}
+    const char* what() const noexcept override;
+
+private:
+    std::string message;
+};
 
 class ConverterJSON {
 public:

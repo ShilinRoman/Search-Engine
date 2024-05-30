@@ -42,8 +42,8 @@ int main()
         int limit = converter.getResponsesLimit();
         std::cout << "Limit: " << limit << std::endl;
     }
-    catch (const char* message) {
-        std::cerr << message << std::endl;
+    catch (const std::exception& x) {
+        std::cerr << "Error: " << x.what() << std::endl;
     }
     return 0;
 }

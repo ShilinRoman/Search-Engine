@@ -36,22 +36,22 @@ std::vector<std::string> ConverterJSON::getTextDocument() {
                 }
                 else
                 {
-                    throw "Error: files are missing";
+                    throw ConverterException ("files are missing");
                 }
             }
             else
             {
-                throw "Error: \"config.json\" has incorrect file version";
+                throw ConverterException ("\"config.json\" has incorrect file version");
             }
         }
         else
         {
-            throw "Error: \"config\" file is empty";
+            throw ConverterException ("\"config\" file is empty");
         }
     }
     else
     {
-        throw "Error: \"config\" file is missing";
+        throw ConverterException ("\"config\" file is missing");
     }
     fileConfig.close();
     return textDocuments;
@@ -62,7 +62,7 @@ int ConverterJSON::getResponsesLimit() {
 
     if (!file.is_open())
     {
-        throw "Error: file \"config.json\" not open";
+        throw ConverterException ("file \"config.json\" not open");
     }
 
     json dict;
@@ -81,7 +81,7 @@ std::vector<std::string> ConverterJSON::getRequests() {
 
     if (!file.is_open())
     {
-        throw "Error: file \"requests.json\" not open";
+        throw ConverterException ("file \"requests.json\" not open");
     }
 
     json dict;
@@ -128,4 +128,8 @@ void ConverterJSON::putAnswers(std::vector<std::vector<std::pair <size_t, float>
         }
         file << dict.dump(4);
     }
+}
+
+const char* ConverterException::what() const noexcept {
+    return message.c_str();
 }

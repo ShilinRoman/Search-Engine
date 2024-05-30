@@ -22,8 +22,8 @@ TEST(converterJSON, getResponsesLimit) {
         ASSERT_EQ(expectedResponses, actualResponses);
         std::cout << "The test is passed" << std::endl;
     }
-    catch (const char* message) {
-        std::cerr << message << std::endl;
+    catch (const std::exception& x) {
+        std::cerr << "Error: " << x.what() << std::endl;
     }
 }
 
@@ -36,8 +36,8 @@ TEST(converterJSON, getRequests) {
         ASSERT_EQ(expectedRequests, actualRequests);
         std::cout << "The test is passed" << std::endl;
     }
-    catch (const char* message) {
-        std::cerr << message << std::endl;
+    catch (const std::exception& x) {
+        std::cerr << "Error: " << x.what() << std::endl;
     }
 }
 
