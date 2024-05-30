@@ -65,6 +65,6 @@ TEST(converterJSON, getFiles) {
 
 TEST(converterJSON, putAnswers) {
     std::ifstream answers ("json_files\\answers.json");
-    ASSERT_TRUE(answers) << "File \"answers.json\" not open";
+    ASSERT_TRUE(answers.is_open()) << "File \"answers.json\" not open";
     std::cout << "The test is passed" << std::endl;
 }
