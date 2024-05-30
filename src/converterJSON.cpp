@@ -46,12 +46,12 @@ std::vector<std::string> ConverterJSON::getTextDocument() {
         }
         else
         {
-            throw "Error: \"config file\" is empty";
+            throw "Error: \"config\" file is empty";
         }
     }
     else
     {
-        throw "Error: \"config file\" is missing";
+        throw "Error: \"config\" file is missing";
     }
     fileConfig.close();
     return textDocuments;
@@ -67,6 +67,7 @@ int ConverterJSON::getResponsesLimit() {
 
     json dict;
     file >> dict;
+
     int defaultResponses = 5;
     int currentResponses = dict["config"]["max_responses"];
     int responses = (dict["config"]["max_responses"].empty()) ? defaultResponses : currentResponses;
@@ -86,9 +87,9 @@ std::vector<std::string> ConverterJSON::getRequests() {
     json dict;
     file >> dict;
 
-    for (size_t i = 0; i < dict["requests"].size(); ++i)
+    for (const auto& element : dict["requests"])
     {
-        requests.push_back(dict["requests"][i]);
+        requests.push_back(element);
     }
     file.close();
     return requests;
@@ -99,43 +100,32 @@ void ConverterJSON::putAnswers(std::vector<std::vector<std::pair <size_t, float>
     int i = 0;
     std::ofstream  file ("json_files\\answers.json", std::ios::trunc);
 
-    if (file.is_open())
-    {
-        for (auto& request : answers)
-        {
+    if (file.is_open()) {
+        for (auto &request: answers) {
             std::stringstream ss;
             ss << "request" << std::setfill('0') << std::setw(3) << i;
 
-            if (!request.empty())
-            {
+            if (!request.empty()) {
                 dict["answers"][ss.str()]["result"] = true;
                 int responsesLimit = getResponsesLimit();
 
-                for (auto& [doc_id, rank] : request)
-                {
+                for (auto &[doc_id, rank]: request) {
                     if (responsesLimit == 0) break;
-                    if (request.size() == 1)
-                    {
+                    if (request.size() == 1) {
                         dict["answers"][ss.str()]["docid"] = doc_id;
                         dict["answers"][ss.str()]["rank"] = rank;
                     }
-                    if (request.size() > 1)
-                    {
-                        dict["answers"][ss.str()]["relevance"].push_back({{"docid", doc_id}, {"rank", rank}});
+                    if (request.size() > 1) {
+                        dict["answers"][ss.str()]["relevance"].push_back({{"docid", doc_id},
+                                                                          {"rank",  rank}});
                     }
                     --responsesLimit;
                 }
-            }
-            else
-            {
+            } else {
                 dict["answers"][ss.str()]["result"] = false;
             }
             ++i;
         }
         file << dict.dump(4);
-    }
-    else
-    {
-        throw "Error: file \"answers.json\" not open";
     }
 }
