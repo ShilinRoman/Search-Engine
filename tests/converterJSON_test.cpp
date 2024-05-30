@@ -2,14 +2,14 @@
 #include "gtest/gtest.h"
 
 TEST(converterJSON, readConfig) {
-    std::ifstream file ("json_files\\config.json");
-    ASSERT_TRUE(file.is_open()) << "File \"requests.json\" not open";
+    std::ifstream config ("json_files\\config.json");
+    ASSERT_TRUE(config.is_open()) << "File \"config.json\" not open";
     std::cout << "The test is passed" << std::endl;
 }
 
 TEST(converterJSON, readRequests) {
-    std::ifstream file ("json_files\\requests.json");
-    ASSERT_TRUE(file.is_open()) << "File \"config.json\" not open";
+    std::ifstream requests ("json_files\\requests.json");
+    ASSERT_TRUE(requests.is_open()) << "File \"requests.json\" not open";
     std::cout << "The test is passed" << std::endl;
 }
 
@@ -17,9 +17,9 @@ TEST(converterJSON, getResponsesLimit) {
     ConverterJSON converter;
     try
     {
-        int expected = 5;
-        int responses = converter.getResponsesLimit();
-        ASSERT_EQ(expected, responses);
+        int expectedResponses = 5;
+        int actualResponses = converter.getResponsesLimit();
+        ASSERT_EQ(expectedResponses, actualResponses);
         std::cout << "The test is passed" << std::endl;
     }
     catch (const char* message) {
@@ -32,8 +32,8 @@ TEST(converterJSON, getRequests) {
     try
     {
         size_t expectedRequests = 1;
-        size_t numberRequests = converter.getRequests().size();
-        ASSERT_EQ(expectedRequests, numberRequests);
+        size_t actualRequests = converter.getRequests().size();
+        ASSERT_EQ(expectedRequests, actualRequests);
         std::cout << "The test is passed" << std::endl;
     }
     catch (const char* message) {
@@ -53,8 +53,8 @@ TEST(converterJSON, getFiles) {
         if (!dict["files"].empty())
         {
             auto expectedFiles = 26;
-            auto numberFiles = dict["files"].size();
-            ASSERT_EQ(expectedFiles, numberFiles);
+            auto actualFiles = dict["files"].size();
+            ASSERT_EQ(expectedFiles, actualFiles);
         }
         else
         {
