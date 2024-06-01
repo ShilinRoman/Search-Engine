@@ -5,7 +5,7 @@ void InvertedIndex::updateDocumentBase(std::vector<std::string> inputDocs)
     if (!docs.empty())
         docs.clear();
 
-    docs = inputDocs;
+    docs = std::move(inputDocs);
     std::string word;
     std::mutex mtx;
     std::vector <std::thread> threads;

@@ -1,6 +1,5 @@
 #include <iostream>
 #include <vector>
-#include <fstream>
 
 #include "converterJSON.h"
 #include "invertedIndex.h"
@@ -21,15 +20,15 @@ void launchingSearchEngine ()
             std::vector <std::pair <size_t, float>> relevanceData;
             for (auto& [doc_id, rank] : element)
             {
-                relevanceData.push_back({doc_id, rank});
+                relevanceData.emplace_back(doc_id, rank);
             }
             answers.push_back(relevanceData);
         }
 
         converter.putAnswers(answers);
     }
-    catch (const char* message) {
-        std::cerr << message << std::endl;
+    catch (const std::exception& x) {
+        std::cerr << "Error: " << x.what() << std::endl;
     }
 }
 

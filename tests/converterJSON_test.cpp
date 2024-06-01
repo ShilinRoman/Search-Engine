@@ -55,6 +55,7 @@ TEST(converterJSON, getFiles) {
             auto expectedFiles = 26;
             auto actualFiles = dict["files"].size();
             ASSERT_EQ(expectedFiles, actualFiles);
+            std::cout << "The test is passed" << std::endl;
         }
         else
         {
