@@ -5,7 +5,7 @@
 #include "invertedIndex.h"
 #include "searchServer.h"
 
-void launchingSearchEngine ()
+void launchSearchEngine ()
 {
     ConverterJSON converter;
     InvertedIndex idx;
@@ -34,15 +34,7 @@ void launchingSearchEngine ()
 
 int main()
 {
-    launchingSearchEngine();
-    ConverterJSON converter;
-    try
-    {
-        int limit = converter.getResponsesLimit();
-        std::cout << "Limit: " << limit << std::endl;
-    }
-    catch (const std::exception& x) {
-        std::cerr << "Error: " << x.what() << std::endl;
-    }
+    launchSearchEngine();
+    system("pause");
     return 0;
 }

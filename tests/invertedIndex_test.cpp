@@ -26,6 +26,7 @@ TEST(InvertedIndex, updateDocumentBase) {
             }
     };
     ASSERT_EQ(inx.getDictionary(), expected);
+    std::cout << "The test is passed" << std::endl;
 }
 
 TEST(InvertedIndex, getWordCount) {
@@ -42,4 +43,5 @@ TEST(InvertedIndex, getWordCount) {
             {0, 4}, {1, 1}, {2, 5}
     };
     ASSERT_EQ(inx.getWordCount(word), expected);
+    std::cout << "The test is passed" << std::endl;
 }

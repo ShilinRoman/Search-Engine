@@ -28,4 +28,5 @@ TEST(SearchServer, search) {
     std::vector<std::vector<RelativeIndex>> result = srv.search(request);
 
     ASSERT_EQ (result, expected);
+    std::cout << "The test is passed" << std::endl;
 }
