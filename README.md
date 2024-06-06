@@ -1,34 +1,27 @@
-# Search-Engine
+# Local search engine
 
-Description of the project:  Local search engine
+### Описание проекта:
+Локальная поисковая система представляет собой консольное приложение, которое выполняет поиск и имеет возможность настройки с помощью файлов в формате JSON. Решения, применяемые в ней, впоследствии могут быть интегрированы в веб-поисковую систему.
 
-The stack of technologies used:  C++, Nlohmann_json, GoogleTest
+### Используемый стек технологий:
+C++, Nlohmann_json, GoogleTest
 
-Instruction manual: To download the program archive, click on the Code button.
-Unzip the archive data to a new folder. You can use MinGW64 for compilation.
-To compile the program, go to the project folder on the command line, then select the src folder and run the command:
+### Инструкция:
+Чтобы загрузить архив программы, нажмите на кнопку Code. Распакуйте данные архива в новую папку. Для компиляции можно использовать MinGW64. Чтобы скомпилировать программу, перейдите в папку project в командной строке, затем выберите папку src и запустите команду:
 
-g++ main.cpp converterJSON.cpp invertedIndex.cpp searchServer.cpp -o search-engine .exe
+#### g++ main.cpp converterJSON.cpp invertedIndex.cpp searchServer.cpp -o search-engine .exe
 
-Then run the program with the command:
+Затем запустите программу командой:
 
-search-engine.exe
+#### search-engine.exe
 
-The search engine is a console application
-that performs a search and has the ability to configure through JSON format
-files. The solutions applied in it can later be integrated into
-a web-based search engine.
 
-The principles of the search engine:
-- In the "config.json" configuration file, before launching the application, the names
-of the files in the "files" field are set, which the engine will search for.
-- The search engine independently crawls all files and
-indexes them so that it can then find the most
-relevant documents for any search query.
-- The user makes a request through the JSON file "requests.json", then the request is transformed into a list of words.
-- The index searches for those documents on which all these words occur.
-- The search results are ranked, sorted and given to the user,
-the maximum number of possible documents in the response is set in
-the configuration file "config.json" in the "max_responses" field.
-- At the end, the program generates the file "answers.json", which records
-the search results.
+
+### Принципы работы поисковой системы:
+
+- В конфигурационном файле "config.json" перед запуском приложения задаются имена файлов в поле "files", которые движок будет искать.
+- Поисковая система самостоятельно обрабатывает все файлы и индексирует их, чтобы затем найти наиболее релевантные документы по любому поисковому запросу.
+- Пользователь делает запрос через JSON-файл "requests.json", затем запрос преобразуется в список слов.
+- Индекс выполняет поиск тех документов, в которых встречаются все эти слова.
+- Результаты поиска ранжируются, сортируются и выдаются пользователю, максимальное количество возможных документов в ответе задается в конфигурационном файле "config.json" в поле "max_responses".
+- В конце концов, программа генерирует файл "answers.json", в который записываются результаты поиска.
