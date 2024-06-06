@@ -35,6 +35,5 @@ void launchSearchEngine ()
 int main()
 {
     launchSearchEngine();
-    system("pause");
     return 0;
 }

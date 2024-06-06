@@ -1,3 +1,8 @@
+#include <map>
+#include <set>
+#include <string>
+#include <sstream>
+
 #include "searchServer.h"
 
 std::vector<std::vector<RelativeIndex>> SearchServer::search(const std::vector<std::string>& queriesInput)
@@ -10,7 +15,7 @@ std::vector<std::vector<RelativeIndex>> SearchServer::search(const std::vector<s
         for (auto& request : queriesInput)
         {
             std::set <std::string> uniqueWords;
-            std::stringstream ss(request);
+            std::stringstream ss(request.c_str());
             std::string bufferWord;
             while (ss >> bufferWord)
             {

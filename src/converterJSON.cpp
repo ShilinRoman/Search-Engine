@@ -1,4 +1,14 @@
+#include <iostream>
+#include <exception>
+#include <fstream>
+#include <vector>
+#include <sstream>
+#include <string>
+
+#include "nlohmann/json.hpp"
 #include "converterJSON.h"
+
+using json = nlohmann::json;
 
 std::vector<std::string> ConverterJSON::getTextDocument() {
     std::vector <std::string> textDocuments;

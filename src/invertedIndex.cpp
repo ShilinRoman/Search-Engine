@@ -1,4 +1,14 @@
+#include <fstream>
+#include <mutex>
+#include <sstream>
+#include <string>
+#include <thread>
+
+#include "nlohmann/json.hpp"
 #include "invertedIndex.h"
+
+using json = nlohmann::json;
+
 
 void InvertedIndex::updateDocumentBase(std::vector<std::string> inputDocs)
 {

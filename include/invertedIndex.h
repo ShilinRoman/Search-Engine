@@ -1,18 +1,8 @@
 #ifndef SEARCH_ENGINE_INVERTEDINDEX_H
 #define SEARCH_ENGINE_INVERTEDINDEX_H
 
-#include <iostream>
-#include <fstream>
 #include <map>
-#include <mutex>
-#include <sstream>
-#include <string>
-#include <thread>
 #include <vector>
-
-#include "nlohmann/json.hpp"
-
-using json = nlohmann::json;
 
 struct Entry
 {
@@ -35,6 +25,5 @@ private:
     std::vector <std::string> docs;
     std::map <std::string, std::vector <Entry>> freqDictionary;
 };
-
 
 #endif //SEARCH_ENGINE_INVERTEDINDEX_H
