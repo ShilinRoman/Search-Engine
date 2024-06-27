@@ -1,7 +1,6 @@
 #include <fstream>
 #include <mutex>
 #include <sstream>
-#include <string>
 #include <thread>
 
 #include "nlohmann/json.hpp"

@@ -2,6 +2,7 @@
 #define SEARCH_ENGINE_INVERTEDINDEX_H
 
 #include <map>
+#include <string>
 #include <vector>
 
 struct Entry

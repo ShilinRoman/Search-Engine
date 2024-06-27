@@ -42,6 +42,7 @@ TEST(converterJSON, getRequests) {
 }
 
 TEST(converterJSON, getFiles) {
+    using json = nlohmann::json;
     std::ifstream config ("json_files\\config.json");
     ASSERT_TRUE(config.is_open()) << "File \"config.json\" not open";
 

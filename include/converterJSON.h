@@ -1,6 +1,12 @@
 #ifndef SEARCH_ENGINE_CONVERTERJSON_H
 #define SEARCH_ENGINE_CONVERTERJSON_H
 
+#include <fstream>
+#include <string>
+#include <vector>
+
+#include "nlohmann/json.hpp"
+
 class ConverterException : public std::exception {
 public:
     explicit ConverterException (const std::string& newMessage) : message(newMessage) {}
