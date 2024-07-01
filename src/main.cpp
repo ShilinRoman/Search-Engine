@@ -24,7 +24,6 @@ void launchSearchEngine ()
             }
             answers.push_back(relevanceData);
         }
-
         converter.putAnswers(answers);
     }
     catch (const std::exception& x) {
@@ -35,5 +34,6 @@ void launchSearchEngine ()
 int main()
 {
     launchSearchEngine();
+    std::cout << "The program is completed" << std::endl;
     return 0;
 }

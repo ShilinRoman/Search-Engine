@@ -8,7 +8,6 @@
 
 using json = nlohmann::json;
 
-
 void InvertedIndex::updateDocumentBase(std::vector<std::string> inputDocs)
 {
     if (!docs.empty())

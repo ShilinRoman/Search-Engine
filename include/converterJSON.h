@@ -19,18 +19,12 @@ private:
 class ConverterJSON {
 public:
     ConverterJSON() = default;
-
     std::vector <std::string> getTextDocument ();
-
     int getResponsesLimit ();
-
     std::vector <std::string> getRequests ();
-
     void putAnswers (std::vector <std::vector <std::pair <size_t, float>>> answers);
 
 private:
     std::string version = "0.1";
 };
-
-
 #endif //SEARCH_ENGINE_CONVERTERJSON_H

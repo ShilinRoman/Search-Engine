@@ -23,6 +23,4 @@ public:
 private:
     InvertedIndex index;
 };
-
-
 #endif //SEARCH_ENGINE_SEARCHSERVER_H
