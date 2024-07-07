@@ -12,6 +12,7 @@ std::vector<std::vector<RelativeIndex>> SearchServer::search(const std::vector<s
 
     if (!queriesInput.empty())
     {
+        // Generates a list of unique words
         for (auto& request : queriesInput)
         {
             std::set <std::string> uniqueWords;
@@ -22,6 +23,7 @@ std::vector<std::vector<RelativeIndex>> SearchServer::search(const std::vector<s
                 uniqueWords.insert(bufferWord);
             }
 
+            // Sorts words in order of increasing frequency of occurrence
             std::map <size_t, std::string> sortedFrequencyWords; // <quantity, word>
             for (auto& word : uniqueWords)
             {
@@ -39,6 +41,7 @@ std::vector<std::vector<RelativeIndex>> SearchServer::search(const std::vector<s
 
             if (!sortedFrequencyWords.empty())
             {
+                // Absolute relevance is calculated
                 std::multimap <size_t, size_t> absoluteRelevance; // <absolute relevance, doc_id>
                 bool isResult = false;
                 auto itFirstWord = sortedFrequencyWords.begin();
@@ -90,6 +93,7 @@ std::vector<std::vector<RelativeIndex>> SearchServer::search(const std::vector<s
 
                 if (!absoluteRelevance.empty())
                 {
+                    // Relative relevance is calculated
                     std::vector <RelativeIndex> relativeRelevance;
                     auto maxAbsCount = absoluteRelevance.rbegin();
 
@@ -101,6 +105,7 @@ std::vector<std::vector<RelativeIndex>> SearchServer::search(const std::vector<s
                         relativeRelevance.push_back(relativeIndex);
                     }
 
+                    // Sorting by decreasing relative relevance
                     for (size_t i = 0; i < relativeRelevance.size()-1; ++i)
                     {
                         size_t max = i;
